@@ -1,34 +1,24 @@
-import {
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-} from "@/components/ui/sidebar";
-import { HelpCircleIcon } from "lucide-react";
+import { SidebarFooter } from "@/components/ui/sidebar";
 import { twMerge } from "tailwind-merge";
+import SiderGroup, { SiderItem } from "./SiderGroup";
+import { HelpCircleIcon } from "lucide-react";
 
 export type SiderFooterProps = {
   className?: string;
 };
+
+const items: SiderItem[] = [
+  {
+    title: "Help",
+    url: "/help",
+    icon: HelpCircleIcon,
+  },
+];
+
 export default function SiderFooter({ className = "" }: SiderFooterProps) {
   return (
     <SidebarFooter className={twMerge("", className)}>
-      <SidebarGroup>
-        <SidebarGroupContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <a href={"#help"}>
-                  <HelpCircleIcon />
-                  <span>Help</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
+      <SiderGroup items={items} />
     </SidebarFooter>
   );
 }
