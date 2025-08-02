@@ -137,7 +137,6 @@ const filters: ChartFilter = {
 export default function Home() {
   return (
     <>
-      <ToggleButton />
       <LineChart
         name="Teste"
         subtitles={subtitles}

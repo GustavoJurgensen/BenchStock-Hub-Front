@@ -1,40 +1,74 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import * as React from "react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import { useState } from "react";
 
-export function ToggleButton() {
-  const { setTheme } = useTheme()
+export type ToggleOption = {
+  label: string;
+  value: string;
+  icon: React.ReactNode;
+};
+
+export type ToggleButtonProps = {
+  className?: string;
+  options: ToggleOption[];
+  defaultOptIndex?: number;
+  onChange?: (opt: ToggleOption) => void;
+};
+
+export function ToggleButton({
+  className = "",
+  options,
+  defaultOptIndex = 0,
+  onChange = () => {},
+}: ToggleButtonProps) {
+  const defaultOpt = options[defaultOptIndex];
+  const [icon, setIcon] = useState(defaultOpt.icon);
+  const [selectOpt, setSelectOpt] = useState(defaultOpt);
+  const select = (opt: ToggleOption) => {
+    setIcon(opt.icon);
+    onChange(opt);
+    setSelectOpt(opt);
+  };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+        {options.length > 2 ? (
+          <Button variant="ghost" size="icon">
+            {icon}
+            <span className="sr-only">Toggle</span>
+          </Button>
+        ) : (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() =>
+              select(options.filter((o) => o.value != selectOpt.value)[0])
+            }
+          >
+            {icon}
+            <span className="sr-only">Toggle</span>
+          </Button>
+        )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
-      </DropdownMenuContent>
+      {options.length > 2 ? (
+        <DropdownMenuContent align="center">
+          {options.map((o) => (
+            <DropdownMenuItem key={o.value} onClick={() => select(o)}>
+              {o.label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      ) : null}
     </DropdownMenu>
-  )
+  );
 }
