@@ -1,6 +1,6 @@
 "use client";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import Sider from "@/components/main/navigation/Sider/Sider";
+import Sider from "@/components/main/navigation/sider/Sider";
 import Header from "@/components/main/navigation/Header";
 import { useState } from "react";
 
