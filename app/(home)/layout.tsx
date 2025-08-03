@@ -3,6 +3,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import Sider from "@/components/main/navigation/sider/Sider";
 import Header from "@/components/main/navigation/Header";
 import { useState } from "react";
+import Footer from "@/components/main/navigation/Footer";
 
 export default function HomeLayout({
   children,
@@ -19,6 +20,7 @@ export default function HomeLayout({
       <main className="flex flex-col w-full h-full divide-y">
         <Header className="p-3 w-full" collapsedSideBar={collapsedSideBar} />
         <div className="p-3 w-full flex-1">{children}</div>
+        <Footer />
       </main>
     </SidebarProvider>
   );

@@ -15,7 +15,10 @@ export default function Header({
 }: HeaderProps) {
   return (
     <div
-      className={twMerge("gap-2 flex items-center justify-between", className)}
+      className={twMerge(
+        "sticky top-0 left-0 bg-white dark:bg-black z-10 gap-2 flex items-center justify-between",
+        className
+      )}
     >
       <div className="flex flex-row gap-2 items-center">
         {!collapsedSideBar ? <SidebarTrigger /> : null}
