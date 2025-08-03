@@ -17,7 +17,7 @@ export default function HomeLayout({
       onOpenChange={(open) => setCollapsedSideBar(open)}
     >
       <Sider />
-      <main className="flex flex-col w-full h-full divide-y">
+      <main className="flex flex-col w-full divide-y">
         <Header className="p-3 w-full" collapsedSideBar={collapsedSideBar} />
         <div className="p-3 w-full flex-1">{children}</div>
         <Footer />
