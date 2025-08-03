@@ -1,26 +1,18 @@
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 import { twMerge } from "tailwind-merge";
 import SiderApplicationGroup from "./SiderApplicationGroup";
-import SiderHeader from "./SiderHeader";
 import SiderFooter from "./SiderFooter";
+import SiderHeader from "./SiderHeader";
 import SiderStocksGroup from "./SiderStocksGroup";
 
 export type SiderProps = {
   className?: string;
-  collapsedSideBar?: boolean;
 };
 
-export default function Sider({
-  className = "",
-  collapsedSideBar = true,
-}: SiderProps) {
+export default function Sider({ className = "" }: SiderProps) {
   return (
     <Sidebar className={twMerge("", className)}>
-      <SiderHeader collapsedSideBar={collapsedSideBar} />
+      <SiderHeader />
       <SidebarContent>
         <SiderApplicationGroup />
         <SiderStocksGroup />

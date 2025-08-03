@@ -77,7 +77,7 @@ export default function LineChart({
     }
   };
   return (
-    <Card className={twMerge("", className)}>
+    <Card className={twMerge("py-2", className)}>
       <CardHeader className="flex items-center gap-2 border-b sm:flex-row">
         {title ? (
           <CardTitle className="flex text-xl items-center align-middle flex-1 gap-2">
@@ -112,7 +112,7 @@ export default function LineChart({
           </Select>
         ) : null}
       </CardHeader>
-      <CardContent className="">
+      <CardContent className="px-4">
         <ChartContainer
           config={subtitles satisfies ChartConfig}
           className="aspect-auto h-[250px] w-full"
