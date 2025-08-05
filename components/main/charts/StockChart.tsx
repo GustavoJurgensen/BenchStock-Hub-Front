@@ -2,14 +2,14 @@
 import { twMerge } from "tailwind-merge";
 import LineChart, { ChartFilter, ChartSubtitle } from "./LineChart";
 
-export type StockValues = {
-  date: string;
-  value: number;
+export type StockValue = {
+  Datetime: string;
+  Value: number;
 };
 
 export type StockChartProps = {
   className?: string;
-  values: StockValues[];
+  values: StockValue[];
 };
 
 const subtitles: ChartSubtitle = {
@@ -50,7 +50,7 @@ export default function StockChart({
     <LineChart
       className={twMerge("", className)}
       values={values.map((o) => {
-        return { date: o.date, value: o.value };
+        return { date: o.Datetime, value: o.Value };
       })}
       name="valueMarket"
       subtitles={subtitles}
